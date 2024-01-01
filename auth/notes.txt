@@ -1,0 +1,17 @@
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=as123df
+
+ % k get pods 
+
+ NAME                               READY   STATUS        RESTARTS   AGE
+auth-depl-5b4d6b7f9c-82mmk         1/1     Running       0          15s
+auth-depl-669f96b57f-7vg5j         1/1     Terminating   0          2m19s
+auth-mongo-depl-7bc99bf468-m9ndp   1/1     Running       0          5m2s
+client-depl-6694df88fd-q5nt8       1/1     Running       0          5m2s
+
+ % k exec -it auth-depl-669f96b57f-7vg5j sh
+logged in to the pod/container
+
+nats-test % k port-forward nats-depl-db4545d6-pw9n4  4222:4222
+% k exec -it orders-mongo-depl-7c4c7c66cd-p2tcg -- mongosh
+
+% k create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_51OTkmGBpcrRYFDKA8iz1NsON7LGKbSbsrdJqVfMslJBqG9geHGxk1l75sc9XUnAvllHocFQVahI5AivqgVc6I7fm00YDQjofiU
